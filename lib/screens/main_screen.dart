@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:y_and_r_chat/screens/loginscreen.dart';
 
-class LoginSignupScreen extends StatefulWidget {
-  const LoginSignupScreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<LoginSignupScreen> createState() => _LoginSignupScreenState();
+  State<MainScreen> createState() => _LoginSignupScreenState();
 }
 
-class _LoginSignupScreenState extends State<LoginSignupScreen> {
+class _LoginSignupScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return ColorFiltered(
-      colorFilter: ColorFilter.mode(
+      colorFilter: const ColorFilter.mode(
           Colors.indigoAccent,
           BlendMode.overlay
       ),
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage('img/background.jpg')
@@ -34,7 +35,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Y & R',
                           style: TextStyle(
                             fontSize: 35,
@@ -44,9 +45,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 200,
+                          height: MediaQuery.of(context).size.height*0.2,
                         ),
-                        Text(
+                        const Text(
                           'Learn Languages',
                           style: TextStyle(
                             fontSize: 35,
@@ -56,7 +57,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           ),
                         ),
 
-                        Text(
+                        const Text(
                           'From Content You',
                           style: TextStyle(
                             fontSize: 35,
@@ -65,7 +66,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               fontFamily: 'Arlon'
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Love',
                           style: TextStyle(
                             fontSize: 35,
@@ -75,7 +76,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 25,
+                          height: MediaQuery.of(context).size.height*0.03,
                         ),
                         Divider(
                           thickness: 0.5,
@@ -85,9 +86,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           color: Colors.grey[100],
                         ),
                         SizedBox(
-                          height: 25,
+                          height: MediaQuery.of(context).size.height*0.03,
                         ),
-                        Text(
+                        const Text(
                           'The Fast, Fun and',
                           style: TextStyle(
                             fontSize: 17,
@@ -96,13 +97,79 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             //fontFamily: 'Aramis'
                           ),
                         ),
-                        Text(
+                        const Text(
                           'effective way to Learn',
                           style: TextStyle(
                             fontSize: 17,
                             color: Colors.white,
                               fontWeight: FontWeight.w300,
                               //fontFamily: 'Aramis'
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height*0.17,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height*0.065,
+                          width: MediaQuery.of(context).size.width*0.85,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            gradient: const LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: <Color>[
+                                Colors.transparent,
+                                Colors.black,
+                                Colors.transparent,
+                              ],
+                            ),
+                          ),
+                          child: TextButton(
+                            child: const Text("Get Started For Free!",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'Arlon'
+                            ),
+                            ),
+                            onPressed: (){
+
+                            },
+
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height*0.011,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height*0.065,
+                          width: MediaQuery.of(context).size.width*0.85,
+                          decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment(0.8, 1),
+                                  colors: <Color>[
+                                    Colors.transparent,
+                                    Colors.black,
+                                    Colors.transparent,
+                                  ],
+                              ),
+                              borderRadius: BorderRadius.circular(10.0)
+                          ),
+                          child: TextButton(
+                            child: const Text("I already have an account",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'Arlon'
+                            ),
+                            ),
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                return const LoginSignupScreen();
+                              })
+                              );
+                            },
                           ),
                         ),
 

@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Y&R chat',
       theme: ThemeData(),
-      home: LoginSignupScreen()
+      home: MainScreen()
     );
   }
 }
