@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginSignupScreen extends StatefulWidget {
   const LoginSignupScreen({super.key});
@@ -54,7 +55,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height*0.07,
+                  height: MediaQuery.of(context).size.height*0.08,
                 ),
                 Form(
                     child: Column(
@@ -107,7 +108,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           )
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height*0.64,
+          top: MediaQuery.of(context).size.height*0.644,
           right: 30,
           child: const Text("Forgot your password?",
           style: TextStyle(
@@ -118,7 +119,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           // 필드 밑의 텍스트
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height*0.71,
+          top: MediaQuery.of(context).size.height*0.72,
           right: 0,
           left: 0,
           child: Column(
@@ -155,6 +156,72 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           ),
         ),
         // 로그인
+        Positioned(
+            top: MediaQuery.of(context).size.height*0.87,
+            child: Container(
+              padding: EdgeInsets.only(left: 30, right: 30),
+              child: Row(
+                children: [
+                  TextButton.icon(
+                      onPressed: (){
+
+                      },
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10)
+                          )
+                        ),
+                        backgroundColor: Colors.white30,
+                        minimumSize: Size(MediaQuery.of(context).size.width/2-30, 60),
+                      ),
+
+                      icon: Icon(
+                        FontAwesomeIcons.google,
+                        size: 25,
+                      ),
+                      label: Text( " Google",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.normal
+                        ),
+                      )
+                  ),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  TextButton.icon(
+                      onPressed: (){
+                      },
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomRight: Radius.circular(10)
+                            )
+                        ),
+                        backgroundColor: Colors.white30,
+                        minimumSize: Size(MediaQuery.of(context).size.width/2-30, 60),
+                      ),
+
+                      icon: FaIcon(
+                        FontAwesomeIcons.facebook,
+                        size: 25,
+                      ),
+                      label: Text( " Facebook",
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.normal
+                        ),
+                      )
+                  ),
+                ],
+              ),
+            )
+        ),
       ],
       )
     );
