@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "319425571590",
+    "project_id": "y-and-r-chat",
+    "storage_bucket": "y-and-r-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319425571590:android:c6a2637dfd65a2d24c8c87",
+        "android_client_info": {
+          "package_name": "com.example.y_and_r_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJOnlsuBo0czQExgKZsZvQdpHOw2UOlDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
