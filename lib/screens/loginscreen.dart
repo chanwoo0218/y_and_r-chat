@@ -1,20 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:y_and_r_chat/screens/signup_screen.dart';
 
-class LoginSignupScreen extends StatefulWidget {
-  const LoginSignupScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<LoginSignupScreen> createState() => _LoginSignupScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginSignupScreenState extends State<LoginSignupScreen> {
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  String userEmail = '';
+  String userPassword = '';
+
+  void _tryValidation() {
+    final isValid = _formKey.currentState!.validate(); // 이해하기!!!!
+    if(isValid) {
+      _formKey.currentState!.save();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff091A2E),
       body: Stack(
       children : [
+        Positioned(
+            right: 0,
+            top: 20,
+            child: IconButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.exit_to_app_sharp,
+                  size: 30,
+                ),
+            )
+        ),
+        // 나가기 버튼
         Positioned(
           right: 0,
           left: 0,
@@ -58,32 +83,55 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   height: MediaQuery.of(context).size.height*0.08,
                 ),
                 Form(
+                    key: _formKey,
                     child: Column(
                       children: [
                         TextFormField(
+                          validator: (value){
+                            if(value!.isEmpty || !value.contains('@')) {
+                              return "Please enter a valid email address.";
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            userEmail = value!;
+                          },
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white30,
-                            hintText: 'Username or Email',
-                            hintStyle: TextStyle(
+                            // prefixIcon: Icon(Icons.email_outlined),
+                            // prefixIconColor: Colors.grey,
+                            hintText: 'Email',
+                            hintStyle: const TextStyle(
                               fontSize: 17,
                               color: Colors.white70
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            contentPadding: EdgeInsets.all(20.0)
+                            contentPadding: const EdgeInsets.all(20.0)
                           ),
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height*0.01,
                         ),
                         TextFormField(
+                          validator: (value){
+                            if(value!.isEmpty || value.length < 6) {
+                              return "Password must be at least 6 characters long.";
+                            }
+                            return null;
+                          },
+                          onSaved: (value){
+                            userPassword = value!;
+                          },
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.white30,
                               hintText: 'Password',
-                              hintStyle: TextStyle(
+                              // prefixIcon: Icon(Icons.security_outlined),
+                              // prefixIconColor: Colors.grey,
+                              hintStyle: const TextStyle(
                                   fontSize: 17,
                                   color: Colors.white70
                               ),
@@ -93,7 +141,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            contentPadding: EdgeInsets.all(20.0)
+                            contentPadding: const EdgeInsets.all(20.0)
                           ),
                         ),
                       ],
@@ -108,16 +156,25 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           )
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height*0.644,
+          top: MediaQuery.of(context).size.height*0.62,
           right: 30,
-          child: const Text("Forgot your password?",
-          style: TextStyle(
-              fontSize: 15,
-              color: Colors.white
-          ),
+          child: TextButton(
+            child: const Text("Don't Have an Account?",
+            style: TextStyle(
+                fontSize: 15,
+                color: Colors.white60
+            ),
+            ),
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return const SignupScreen();
+              })
+              );
+            },
         ),
-          // 필드 밑의 텍스트
+
         ),
+        // 필드 밑의 텍스트
         Positioned(
           top: MediaQuery.of(context).size.height*0.72,
           right: 0,
@@ -126,12 +183,12 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width-60,
-                padding: EdgeInsets.all(17),
+                padding: const EdgeInsets.all(17),
                 decoration: BoxDecoration(
                   color: Colors.amber,
                   borderRadius: BorderRadius.circular(10)
                 ),
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Log in",
                     style: TextStyle(
@@ -145,7 +202,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               SizedBox(
                 height : MediaQuery.of(context).size.height*0.02,
               ),
-              Text(
+              const Text(
                 "or log in with",
                 style: TextStyle(
                     fontSize: 17,
@@ -157,9 +214,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
         ),
         // 로그인
         Positioned(
-            top: MediaQuery.of(context).size.height*0.87,
+            top: MediaQuery.of(context).size.height*0.86,
             child: Container(
-              padding: EdgeInsets.only(left: 30, right: 30),
+              padding: const EdgeInsets.only(left: 30, right: 30),
               child: Row(
                 children: [
                   TextButton.icon(
@@ -168,7 +225,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                       },
                       style: TextButton.styleFrom(
                         primary: Colors.white,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             bottomLeft: Radius.circular(10)
@@ -178,18 +235,19 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                         minimumSize: Size(MediaQuery.of(context).size.width/2-30, 60),
                       ),
 
-                      icon: Icon(
+                      icon: const Icon(
                         FontAwesomeIcons.google,
                         size: 25,
+                        color: Colors.redAccent,
                       ),
-                      label: Text( " Google",
+                      label: const Text( " Google",
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.normal
                         ),
                       )
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 2,
                   ),
                   TextButton.icon(
@@ -197,7 +255,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                       },
                       style: TextButton.styleFrom(
                         primary: Colors.white,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(10),
                                 bottomRight: Radius.circular(10)
@@ -207,11 +265,12 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                         minimumSize: Size(MediaQuery.of(context).size.width/2-30, 60),
                       ),
 
-                      icon: FaIcon(
+                      icon: const FaIcon(
                         FontAwesomeIcons.facebook,
                         size: 25,
+                        color: Colors.blueAccent,
                       ),
-                      label: Text( " Facebook",
+                      label: const Text( " Facebook",
                         style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.normal
