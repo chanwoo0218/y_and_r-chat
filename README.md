@@ -1,6 +1,7 @@
 # y_and_r_chat
 
 A new Flutter project.
+내가 만들고 싶은 chatting app 프로젝트
 
 ## Getting Started
 
